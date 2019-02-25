@@ -46,7 +46,6 @@ function battery_levels(){
             # Display the percentage of charge the battery has.
             printf "| ${fgcolor}${charging}%s $fgdefault" "$batt1"
         fi
-
 }
 
 function vpn_connection(){
@@ -85,3 +84,4 @@ function tmux_left_status(){
 }
 
 tmux_left_status
+
