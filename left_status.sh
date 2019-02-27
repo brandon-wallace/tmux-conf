@@ -1,7 +1,7 @@
 #!/bin/bash -
 
 
-function battery_levels(){
+function battery_levels() {
 
         fgdefault='#[fg=brightblue]'
 
@@ -26,7 +26,7 @@ function battery_levels(){
             esac
 
             # Display the percentage of charge the battery has.
-            printf "| ${fgcolor}${charging}%s $fgdefault" "$batt0"
+            printf "/ ${fgcolor}${charging}%s $fgdefault" "$batt0"
         fi
 
         # Check for existence of a second battery.
@@ -44,14 +44,14 @@ function battery_levels(){
             esac
 
             # Display the percentage of charge the battery has.
-            printf "| ${fgcolor}${charging}%s $fgdefault" "$batt1"
+            printf "/ ${fgcolor}${charging}%s $fgdefault" "$batt1"
         fi
 }
 
 function vpn_connection(){
 
     # Check for tun0 interface.
-    [ -d /sys/class/net/tun0 ] && printf "| %s " 'VPN*'
+    [ -d /sys/class/net/tun0 ] && printf "/ %s " 'VPN*'
 
 }
 
@@ -84,4 +84,5 @@ function tmux_left_status(){
 }
 
 tmux_left_status
+forecast_weather
 
