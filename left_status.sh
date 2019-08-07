@@ -46,9 +46,11 @@ function battery_levels() {
             # Display the percentage of charge the battery has.
             printf "/ ${fgcolor}${charging}%s $fgdefault" "$batt1"
         fi
+
 }
 
-function vpn_connection(){
+
+function vpn_connection() {
 
     # Check for tun0 interface.
     [ -d /sys/class/net/tun0 ] && printf "/ %s " 'VPN*'
@@ -56,7 +58,7 @@ function vpn_connection(){
 }
 
 
-function tmux_left_status(){
+function tmux_left_status() {
 
     # Check to see if enp0s25 is up.
     if [ "$(cat /sys/class/net/enp0s25/operstate)" == "up" ] ; then
@@ -83,6 +85,5 @@ function tmux_left_status(){
 
 }
 
-tmux_left_status
-forecast_weather
 
+tmux_left_status
