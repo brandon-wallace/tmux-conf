@@ -1,8 +1,8 @@
 # My .tmux.conf
 
-## Tmux version 2.1
+# Tmux version 2.8
 
-### Status bar displays information for:
+# Status bar displays information for:
 
 * hostname
 * ip address
@@ -15,6 +15,11 @@
 * current weather 
 
 
+# Right Side
 ![tmux_statusbar_left](/tmux_statusbar_left.jpg)
+
+# Left Side
 ![tmux_statusbar_right](/tmux_statusbar_right.jpg)
+
+# Full Status Bar
 ![tmux_statusbar](/tmux_statusbar.jpg)
