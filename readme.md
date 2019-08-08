@@ -15,10 +15,10 @@
 * current weather 
 
 
-# Right Side
+# Left Side
 ![tmux_statusbar_left](/tmux_statusbar_left.jpg)
 
-# Left Side
+# Right Side
 ![tmux_statusbar_right](/tmux_statusbar_right.jpg)
 
 # Full Status Bar
