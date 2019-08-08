@@ -17,9 +17,11 @@
 
 # Left Side
 ![tmux_statusbar_left](/tmux_statusbar_left.jpg)
+hostname / ip address / battery 1 / battery 2 / vpn status
 
 # Right Side
 ![tmux_statusbar_right](/tmux_statusbar_right.jpg)
+temperature / location / forecast / date / time
 
 # Full Status Bar
 ![tmux_statusbar](/tmux_statusbar.jpg)
