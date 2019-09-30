@@ -2,7 +2,8 @@
 
 
 function forecast() {
-    WEATHER=$(curl --silent "http://api.openweathermap.org/data/2.5/forecast?id=5110253&appid=&units=imperial")
+    WEATHER=$(curl --silent
+    "http://api.openweathermap.org/data/2.5/forecast?id=5110253&appid=<your-api-key>&units=imperial")
 
     RESPONSE=$(printf %s ${WEATHER} | jq -r '.cod')
 
