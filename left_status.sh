@@ -1,6 +1,11 @@
 #!/bin/bash -
 
 
+function temperature_levels() {
+    sensors -f | awk '/Core 0/{printf "/ c0: %s ", $3} /Core 1/{printf "c1: %s ", $3}'
+}
+
+
 function battery_levels() {
 
         fgdefault='#[fg=brightblue]'
@@ -60,12 +65,14 @@ function vpn_connection() {
 
 function tmux_left_status() {
 
+
     # Check to see if enp0s25 is up.
     if [ "$(cat /sys/class/net/enp0s25/operstate)" == "up" ] ; then
         # Display the IP address.
         printf "%s " "$(ip addr show enp0s25 | awk '/inet /{print $2}')" 
 
         battery_levels
+        temperature_levels
         vpn_connection
 
     # Check to see if wlp3s0 is up.
@@ -73,6 +80,7 @@ function tmux_left_status() {
         # Display the IP address.
         printf "%s " "$(ip addr show wlp3s0 | awk '/inet /{print $2}')" 
         battery_levels
+        temperature_levels
         vpn_connection
 
     else
