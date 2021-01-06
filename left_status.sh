@@ -1,6 +1,16 @@
 #!/bin/bash -
 
 
+function install_dependencies() {
+
+    # Check to make sure dependencies are installed.
+    for a in 'bc' 'sensors' 'apci'; do
+        [ "(which $a)" ] || printf "%sPlease install ${a}."
+    done
+
+}
+
+
 function temperature_levels() {
 
     # Display temperature of the CPU cores.
@@ -100,4 +110,5 @@ function tmux_left_status() {
 
 }
 
+install_dependencies
 tmux_left_status
