@@ -4,7 +4,7 @@
 function install_dependencies() {
 
     # Check to make sure dependencies are installed.
-    for a in 'bc' 'sensors' 'apci'; do
+    for a in 'bc' 'sensors' 'acpi'; do
         [ "(which $a)" ] || printf "%sPlease install ${a}."
     done
 
