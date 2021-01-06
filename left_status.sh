@@ -2,7 +2,15 @@
 
 
 function temperature_levels() {
-    sensors -f | awk '/Core 0/{printf "/ c0: %s ", $3} /Core 1/{printf "c1: %s ", $3}'
+
+    # Display temperature of the CPU cores.
+    sensors -f | awk '/Core 0/{printf $3" "}/Core 1/{printf $3" "}'
+
+    # Display memory amount used / total memory and percentage.
+    read used total <<< $(free -m | awk '/Mem/{printf $2" "$3}')
+    percent=$(bc -l <<< "100 * $total / $used")
+    awk -v u=$used -v t=$total -v p=$percent 'BEGIN {printf "%s/%s %.1f%", t, u, p}'
+
 }
 
 
@@ -65,7 +73,6 @@ function vpn_connection() {
 
 function tmux_left_status() {
 
-
     # Check to see if enp0s25 is up.
     if [ "$(cat /sys/class/net/enp0s25/operstate)" == "up" ] ; then
         # Display the IP address.
@@ -92,6 +99,5 @@ function tmux_left_status() {
     fi
 
 }
-
 
 tmux_left_status
