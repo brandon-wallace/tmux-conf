@@ -7,22 +7,20 @@
 * hostname
 * ip address
 * color-changing battery percentage level for a laptop with one or two batteries
-* CPU temperature
-* connection to a VPN
+* CPU core temperatures
+* connection to a VPN if enabled
+* amount of memory used / total memory
+* memory percentage
 * active/inactive windows
+* CPU load average
 * current date
 * current time
-* current temperature
-* current weather 
+* timezone
 
 
 # Left Side
-![tmux_statusbar_left](/tmux_statusbar_left.jpg)
-### hostname / ip address / battery 1 / battery 2 / vpn status
+![tmux_statusbar_left](/tmux_statusbar_left.png)
 
 # Right Side
-![tmux_statusbar_right](/tmux_statusbar_right.jpg)
-### temperature / location / forecast / date / time
+![tmux_statusbar_right](/tmux_statusbar_right.png)
 
-# Full Status Bar
-![tmux_statusbar](/tmux_statusbar.jpg)
