@@ -2,6 +2,19 @@
 
 # Tmux version 2.8
 
+# Requirements
+
+* bc
+* sensors
+* acpi
+
+# Installation
+
+```
+$ sudo apt install bc sensors acpi
+
+```
+
 # Status bar displays information for:
 
 * hostname
