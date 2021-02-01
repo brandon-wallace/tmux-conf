@@ -49,13 +49,13 @@ function battery_levels() {
 
             case $batt0 in
 
-                100%|[5-9][0-9]%) fgcolor='#[fg=brightblue]' 
+                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightblue]'
                     ;;
-
-                2[5-9]%|3[0-9]%|4[0-9]%) fgcolor='#[fg=brightgreen]' 
+                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgreen]'
                     ;;
-
-                0%|1[0-9]%|2[0-4]%) fgcolor='#[fg=brightred]' 
+                4[0-9]%|3[0-9]%|2[5-9]%) fgcolor='#[fg=brightyellow]'
+                    ;;
+                2[0-4]%|1[0-9]%|[0-9]%) fgcolor='#[fg=brightred]'
                     ;;
 
             esac
@@ -72,13 +72,13 @@ function battery_levels() {
 
             case $batt1 in
 
-                100%|[5-9][0-9]%) fgcolor='#[fg=brightblue]' 
+                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightblue]'
                     ;;
-
-                2[5-9]%|3[0-9]%|4[0-9]%) fgcolor='#[fg=brightyellow]' 
+                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgreen]'
                     ;;
-
-                0%|1[0-9]%|2[0-4]%) fgcolor='#[fg=brightred]' 
+                4[0-9]%|3[0-9]%|2[5-9]%) fgcolor='#[fg=brightyellow]'
+                    ;;
+                2[0-4]%|1[0-9]%|[0-9]%) fgcolor='#[fg=brightred]'
                     ;;
 
             esac
