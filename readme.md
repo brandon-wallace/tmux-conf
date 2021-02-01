@@ -37,3 +37,6 @@ $ sudo apt install bc sensors acpi
 # Right Side
 ![tmux_statusbar_right](/tmux_statusbar_right.png)
 
+# Batter Meter
+![tmux_statusbar_battery_meter](/battery.png)
+
