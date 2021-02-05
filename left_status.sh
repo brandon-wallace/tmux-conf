@@ -21,9 +21,17 @@ function temperature_levels() {
     # Display memory amount used / total memory and percentage.
     read used total <<< $(free -m | awk '/Mem/{printf $2" "$3}')
 
-    percent=$(bc -l <<< "100 * $total / $used")
+    fgcolor='#[fg=brightblue]'
 
-    awk -v u=$used -v t=$total -v p=$percent 'BEGIN {printf "%s/%s %.1f%", t, u, p}'
+    case $percent in
+
+        # Warn user if memory is consuming more than 75%!
+        7[5-9].*|8[0-9].*|9[0-9].*) fgcolor='#[fg=brightred]'
+            ;;
+
+    esac
+
+    awk -v u=$used -v t=$total -v fg=$fgcolor -v p=$percent 'BEGIN {printf "%s/%sMB %s %.1f%", t, u, fg, p}'
 
 }
 
