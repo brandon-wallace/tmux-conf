@@ -3,46 +3,22 @@
 
 function ip_address() {
 
-    interface_array=()
+    # Loop through the interfaces and check for the one that is up.
+    for iface in /sys/class/net/*/operstate; do
 
-    # Loop through the interfaces available.
-    for i in $(ls -1 /sys/class/net/); do
+        if [ "$(echo $iface | awk -F'/' '{print $5}')" != "lo" ]; then
 
-        # Add every interface to the array except for the loopback device.
-        if [ "$i" != 'lo' ]; then
+            if [ "$(cat $iface)" == "up" ] ; then
 
-            interface_array+=($i)
+                interface=$(echo $iface | awk -F'/' '{print $5}')
+                printf "%s " "$(ip addr show $interface | awk '/inet /{print $2}')"
 
-        fi
-
-    done
-
-    # Check to see which interface is up.
-    for j in ${interface_array[@]}; do
-
-        if [ "$(cat /sys/class/net/${j}/operstate)" == "up" ]; then
-
-            iface="${j}"
-
-        else
-
-            iface=""
+            fi
 
         fi
 
-    done
-
-    if [ ! -z "$iface" ]; then
-
-        # Display the IP address.
-        printf "%s " "$(ip addr show $iface | awk '/inet /{print $2}')" 
+    done 
         
-    else
-    
-        printf "%s " "Not connected"
-
-    fi
-
 }
 
 
