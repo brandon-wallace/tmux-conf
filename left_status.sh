@@ -36,6 +36,10 @@ function ip_address() {
 
         # Display the IP address.
         printf "%s " "$(ip addr show $iface | awk '/inet /{print $2}')" 
+        
+    else
+    
+        printf "%s " "Not connected"
 
     fi
 
