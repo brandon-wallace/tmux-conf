@@ -65,24 +65,26 @@ function cpu_temperature() {
 
 function battery_levels() {
 
+    local fgdefault='#[default]'
+
     # If acpi program is installed check the battery levels.
     if [ "$(which acpi)" ]; then
 
         # Show a plus sign if the battery is charging otherwise show a minus sign.
         if [ "$(cat /sys/class/power_supply/AC/online)" == 1 ] ; then
 
-            charging='+' 
+            local charging='+' 
 
         else
 
-            charging='-'
+            local charging='-'
 
         fi
 
         # Check for existence of a battery.
         if [ -x /sys/class/power_supply/BAT0 ] ; then
 
-            batt0=$(acpi -b 2> /dev/null | awk '/Battery 0/{print $4}' | cut -d, -f1)
+            local batt0=$(acpi -b 2> /dev/null | awk '/Battery 0/{print $4}' | cut -d, -f1)
 
             case $batt0 in
 
@@ -102,14 +104,14 @@ function battery_levels() {
             esac
 
             # Display the percentage of charge the battery has.
-            printf " ${fgcolor}${charging}%s $fgdefault" "$batt0"
+            printf " ${fgcolor}${charging}%s ${fgdefault}" "$batt0"
 
         fi
 
         # Check for existence of a second battery. Some laptops have two batteries.
         if [ -x /sys/class/power_supply/BAT1 ] ; then
 
-            batt1=$(acpi -b 2> /dev/null | awk '/Battery 1/{print $4}' | cut -d, -f1)
+            local batt1=$(acpi -b 2> /dev/null | awk '/Battery 1/{print $4}' | cut -d, -f1)
 
             case $batt1 in
                
@@ -129,7 +131,7 @@ function battery_levels() {
             esac
 
             # Display the percentage of charge the battery has.
-            printf " ${fgcolor}${charging}%s $fgdefault" "$batt1"
+            printf " ${fgcolor}${charging}%s${fgdefault}" "$batt1"
 
         fi
 
