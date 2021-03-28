@@ -1,5 +1,8 @@
 # My .tmux.conf
 
+![tmux_status_bar_color_right](/tmux_status_bar_color_right.png)
+![tmux_status_bar_color_left](/tmux_status_bar_color_left.png)
+
 # Tmux version 2.8
 
 # Requirements
