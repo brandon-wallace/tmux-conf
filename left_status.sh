@@ -1,7 +1,18 @@
 #!/bin/bash -
 
 
+function host_name() {
+
+    local fgcolor='#[fg=colour154]'
+
+    printf "%s%s " "${fgcolor}$(hostname)"
+
+}
+
+
 function ip_address() {
+
+    local fgcolor='#[fg=colour32]'
 
     # Loop through the interfaces and check for the one that is up.
     for iface in /sys/class/net/*/operstate; do
@@ -18,8 +29,8 @@ function ip_address() {
         fi
 
     done 
-    
-    printf "%s " "${ip_address:=not_connected}"
+
+    printf "%s " "${fgcolor}${ip_address:=not_connected}"
         
 }
 
@@ -28,9 +39,11 @@ function memory_levels() {
 
     # Display memory amount used / total memory and percentage.
     read used total <<< $(free -m | awk '/Mem/{printf $2" "$3}')
-
-    fgcolor=''
-    percent=''
+    
+    local fgcolor=''
+    local color1='#[fg=colour196]'
+    local color2='#[fg=colour242]'
+    local percent=''
 
     # If bc is installed calculate the percentage of memory used.
     if [ "$(which bc)" ]; then
@@ -47,7 +60,7 @@ function memory_levels() {
 
     fi
 
-    awk -v u=$used -v t=$total -v fg=$fgcolor -v p=$percent 'BEGIN {printf "%s/%sMB%s %.1f%", t, u, fg, p}'
+    awk -v u=$used -v t=$total -v clr1=$color1 -v clr2=$color2 -v fg=$fgcolor -v p=$percent 'BEGIN {printf "%s/%sMB%s%s %.1f%", clr1, t, u, clr2, fg, p}'
 
 }
 
