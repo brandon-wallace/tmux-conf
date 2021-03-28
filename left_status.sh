@@ -11,13 +11,15 @@ function ip_address() {
             if [ "$(cat $iface)" == "up" ] ; then
 
                 interface=$(echo $iface | awk -F'/' '{print $5}')
-                printf "%s " "$(ip addr show $interface | awk '/inet /{print $2}')"
+                ip_address=$(ip addr show $interface | awk '/inet /{print $2}')"
 
             fi
 
         fi
 
     done 
+    
+    printf "%s " "${ip_address:=not_connected}"
         
 }
 
