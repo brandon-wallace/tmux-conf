@@ -1,6 +1,9 @@
 # My .tmux.conf
 
+# Left side status bar
 ![tmux_status_bar_color_right](/tmux_status_bar_color_right.png)
+
+# Right side status bar
 ![tmux_status_bar_color_left](/tmux_status_bar_color_left.png)
 
 # Tmux version 2.8
