@@ -6,7 +6,7 @@
 # Right side status bar
 ![tmux_status_bar_color_left](/tmux_status_bar_color_left.png)
 
-# Tmux version 2.8
+# Tmux version 3.1
 
 # Requirements
 
