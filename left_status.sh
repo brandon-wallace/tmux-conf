@@ -88,11 +88,7 @@ function battery_levels() {
         # Show a plus sign if the battery is charging otherwise show a minus sign.
         if [ "$(cat /sys/class/power_supply/AC/online)" == 1 ] ; then
 
-            local charging='+' 
-
-        else
-
-            local charging='-'
+            local charging='🗲' 
 
         fi
 
@@ -119,7 +115,7 @@ function battery_levels() {
             esac
 
             # Display the percentage of charge the battery has.
-            printf " ${fgcolor}${charging}%s ${fgdefault}" "$batt0"
+            printf "%s " "${fgcolor}${charging} ${batt0}${fgdefault}"
 
         fi
 
@@ -146,7 +142,7 @@ function battery_levels() {
             esac
 
             # Display the percentage of charge the battery has.
-            printf " ${fgcolor}${charging}%s${fgdefault}" "$batt1"
+            printf "%s " "${fgcolor} ${batt1}${fgdefault}"
 
         fi
 
