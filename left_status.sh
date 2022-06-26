@@ -22,7 +22,7 @@ function ip_address() {
             if [ "$(cat $iface)" == "up" ] ; then
 
                 interface=$(echo $iface | awk -F'/' '{print $5}')
-                ip_address=$(ip addr show $interface | awk '/inet /{print $2}')"
+                ip_address=$(ip addr show $interface | awk '/inet /{print $2}')
 
             fi
 
