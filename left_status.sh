@@ -81,75 +81,39 @@ function cpu_temperature() {
 function battery_levels() {
 
     local fgdefault='#[default]'
-
+    
     # If acpi program is installed check the battery levels.
     if [ "$(which acpi)" ]; then
-
-        # Show a plus sign if the battery is charging otherwise show a minus sign.
+    
+        # Show a plus sign if the battery is charging.
         if [ "$(cat /sys/class/power_supply/AC/online)" == 1 ] ; then
-
             local charging='🗲' 
-
+            printf "%s " "${charging}"
         fi
 
-        # Check for existence of a battery.
-        if [ -x /sys/class/power_supply/BAT0 ] ; then
-
-            local batt0=$(acpi -b 2> /dev/null | awk '/Battery 0/{print $4}' | cut -d, -f1)
-
-            case $batt0 in
-
+        # Loop over multiple batteries (Some laptops contain two batteries).
+        for batt in /sys/class/power_supply/BAT*; do
+            local level=$(cat $batt/capacity)
+            case $level in
                 # 100% - 75% => blue
-                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightblue]' 
+                100|9[0-9]|8[0-9]|7[5-9]) fgcolor='#[fg=brightblue]' 
                     ;;
                 # 74% - 50% => green
-                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgreen]' 
+                7[0-4]|6[0-9]|5[0-9]) fgcolor='#[fg=brightgreen]' 
                     ;;
                 # 49% - 25% => yellow
-                4[0-9]%|3[0-9]%|2[5-9]%) fgcolor='#[fg=brightyellow]' 
+                4[0-9]|3[0-9]|2[5-9]) fgcolor='#[fg=brightyellow]' 
                     ;;
                 # 24% - 0% => red
-                2[0-4]%|1[0-9]%|[0-9]%) fgcolor='#[fg=brightred]' 
+                2[0-4]|1[0-9]|[0-9]) fgcolor='#[fg=brightred]' 
                     ;;
-
             esac
-
-            # Display the percentage of charge the battery has.
-            printf "%s " "${fgcolor}${charging} ${batt0}${fgdefault}"
-
-        fi
-
-        # Check for existence of a second battery. Some laptops have two batteries.
-        if [ -x /sys/class/power_supply/BAT1 ] ; then
-
-            local batt1=$(acpi -b 2> /dev/null | awk '/Battery 1/{print $4}' | cut -d, -f1)
-
-            case $batt1 in
-               
-                # 100% - 75% => blue
-                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor=>'#[fg=>brightblue]' 
-                    ;;
-                # 74% - 50% => green
-                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor=>'#[fg=>brightgreen]' 
-                    ;;
-                # 49% - 25% => yellow
-                4[0-9]%|3[0-9]%|2[5-9]%) fgcolor=>'#[fg=>brightyellow]' 
-                    ;;
-                # 24% - 0% => red
-                2[0-4]%|1[0-9]%|[0-9]%) fgcolor=>'#[fg=>brightred]' 
-                    ;;
-
-            esac
-
-            # Display the percentage of charge the battery has.
-            printf "%s " "${fgcolor} ${batt1}${fgdefault}"
-
-        fi
-
+            printf "%s " "${fgcolor}$(cat $batt/capacity)%${fgdefault}"
+        done
+        
     fi
-
+    
 }
-
 
 function is_vpn_enabled() {
 
