@@ -1,48 +1,35 @@
 # My .tmux.conf
 
-# Left side status bar
-![tmux_status_bar_color_right](/tmux_status_bar_color_right.png)
+# Left side status line
+![tmux_status_line_left](/tmux_status_line_left.png)
 
-# Right side status bar
-![tmux_status_bar_color_left](/tmux_status_bar_color_left.png)
+# Right side status line
+![tmux_status_line_right](/tmux_status_line_right.png)
 
-# Tmux version 3.1
+# Tmux version 3.3a
 
 # Requirements
 
-* bc
 * sensors
-* acpi
 
 # Installation
 
 ```
-$ sudo apt install bc sensors acpi
+$ sudo apt install sensors 
 
+$ sudo dnf install lm_sensors
 ```
 
-# Status bar displays information for:
+# Status line displays information for:
 
 * hostname
 * ip address
-* color-changing battery percentage level for a laptop with one or two batteries
-* CPU core temperatures
-* connection to a VPN if enabled
+* color-changing battery percentage level 
+* CPU core temperature
+* VPN ip address
 * amount of memory used / total memory
 * memory percentage
-* active/inactive windows
 * CPU load average
 * current date
 * current time
 * timezone
-
-
-# Left Side
-![tmux_statusbar_left](/tmux_statusbar_left.png)
-
-# Right Side
-![tmux_statusbar_right](/tmux_statusbar_right.png)
-
-# Batter Meter (showing laptop with dual batteries)
-![tmux_statusbar_battery_meter](/battery.png)
-
