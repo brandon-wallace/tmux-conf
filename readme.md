@@ -23,12 +23,13 @@ $ sudo dnf install lm_sensors
 # Status line displays information for:
 
 * hostname
-* ip address
-* color-changing battery percentage level 
-* CPU core temperature
-* VPN ip address
+* IP address
+* CPU temperature
 * amount of memory used / total memory
 * memory percentage
+* battery percentage level with color change
+* bluetooth device connected
+* VPN interface and IP address
 * CPU load average
 * current date
 * current time
